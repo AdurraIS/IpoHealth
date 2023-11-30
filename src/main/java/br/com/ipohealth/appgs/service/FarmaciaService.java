@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -46,15 +47,18 @@ public class FarmaciaService {
     }
     @Scheduled(fixedRate = 60000)
     public void atualizarStatus() {
-        Time horarioAtual = new Time(System.currentTimeMillis());
-
+        LocalTime horarioAtual = LocalTime.now();
+        System.out.println(horarioAtual);
         List<Farmacia> list_farmacia = farmaciaRepository.findAll();
         for (Farmacia farmacia : list_farmacia) {
-
-            if (horarioAtual.after(farmacia.getOpen_farmacia()) && horarioAtual.before(farmacia.getClose_farmacia())) {
+            LocalTime openFarmacia = farmacia.getOpen_farmacia().toLocalTime();
+            LocalTime closeFarmacia = farmacia.getClose_farmacia().toLocalTime();
+            if (horarioAtual.isAfter(openFarmacia) && horarioAtual.isBefore(closeFarmacia)) {
                 farmacia.setOpen_status_farmacia(true);
+                System.out.println("Farmacia aberta");
             } else {
                 farmacia.setOpen_status_farmacia(false);
+                System.out.println("Farmacia fechada");
             }
             farmaciaRepository.save(farmacia);
         }
