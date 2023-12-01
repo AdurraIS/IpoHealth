@@ -1,10 +1,13 @@
 package br.com.ipohealth.appgs.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -28,5 +31,8 @@ public class Usuario {
 
     private String cidade_usuario;
 
+    @JsonIgnore
+    @OneToMany(mappedBy="usuario")
+    private List<Lembrete> lembretes;
 
 }

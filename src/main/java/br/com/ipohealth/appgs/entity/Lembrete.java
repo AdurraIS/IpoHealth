@@ -1,5 +1,7 @@
 package br.com.ipohealth.appgs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,7 +20,13 @@ public class Lembrete {
 
     private String desc_lembrete;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date data_lembrete;
 
     private boolean status_lembrete;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 }
