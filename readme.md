@@ -78,10 +78,10 @@ Chrome – Snack Expo <br>
 
 ---
 
-Link do pitch: 
-
+Link do Aplicação: 
+https://youtu.be/lPfQ9bBGY2Q
 Link Testes:
-
+https://youtu.be/oE8LtYvYp3g
 ---
 
 ### Documentação API e Execução da aplicação:
