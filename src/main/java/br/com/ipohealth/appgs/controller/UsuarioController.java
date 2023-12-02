@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
+@CrossOrigin
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -45,8 +46,12 @@ public class UsuarioController {
         usuarioService.deleteusuario(id);
         return ResponseEntity.noContent().build();
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> updateusuario(@RequestBody UsuarioDTO usuarioDTO, @PathVariable Long id){
-        return ResponseEntity.ok(usuarioService.atualizarusuario(usuarioDTO, id));
+    @PutMapping("/update")
+    public ResponseEntity<UsuarioDTO> updateusuario(@RequestBody UsuarioDTO usuarioDTO){
+        return ResponseEntity.ok(usuarioService.atualizarusuario(usuarioDTO));
+    }
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UsuarioDTO> findUsuariobyName(@PathVariable String email){
+        return ResponseEntity.ok(usuarioService.findByEmail(email));
     }
 }

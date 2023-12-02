@@ -16,8 +16,8 @@ public class UsuarioDTO {
 
     public UsuarioDTO(Usuario usuario){
         this.id = usuario.getId();
-        this.nm_usuario = usuario.getNm_usuario();
-        this.email_usuario = usuario.getEmail_usuario();
+        this.nmusuario = usuario.getNmusuario();
+        this.email_usuario = usuario.getEmailUsuario();
         this.senha_usuario = usuario.getSenha_usuario();
         this.idade_usuario = usuario.getIdade_usuario();
         this.logra_usuario = usuario.getLogra_usuario();
@@ -30,7 +30,7 @@ public class UsuarioDTO {
 
     @NotNull(message = "Nome nao pode ser nulo")
     @NotBlank(message = "Nome nao pode ser vazio")
-    private String nm_usuario;
+    private String nmusuario;
 
     @NotNull(message = "Email nao pode ser nulo")
     @NotBlank(message = "Email nao pode ser vazio")
